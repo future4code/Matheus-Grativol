@@ -66,10 +66,10 @@ function retornaExpressoesBooleanas() {
 // EXERCÍCIO 07
 function retornaNNumerosPares(n) {
   let numerosPares = []
-  for (let i = 0; i < n; i++) {
-    if (n % 2 === 0) {
-      nNumeros = n
-      numerosPares.push(nNumeros)
+  for (let i = 0; numerosPares.length < n; i++) {
+    if (i % 2 === 0) {
+      
+      numerosPares.push(i)
     }
   }
   return numerosPares
@@ -80,6 +80,16 @@ function checaTriangulo(a, b, c) {
   // return 'Escaleno'
   // return 'Equilátero'
   // return 'Isósceles'
+  const equlatero = 'Equilátero'
+  const isosceles = 'Isósceles'
+  const ecaleno = 'Escaleno'
+  if (a === b && b === c) {
+    return equlatero
+  }else if (a !== b && b !== c && a !== c) {
+    return ecaleno
+  }else{
+    return isosceles
+  }
 }
 
 // EXERCÍCIO 09
@@ -90,16 +100,51 @@ function comparaDoisNumeros(num1, num2) {
   //   maiorDivisivelPorMenor: Y,
   //   diferenca: Z
   // }
+  let maiorNumero
+  let menorNumero
+  
+    if (num1 >= num2) {
+      maiorNumero = num1
+      menorNumero = num2
+    }else if ( num1 <= num2) {
+      maiorNumero = num2
+      menorNumero = num1
+    }
+    
+  let maiorDivisivelPorMenor = maiorNumero % menorNumero === 0
+  let resultado = {maiorNumero: maiorNumero, maiorDivisivelPorMenor: maiorDivisivelPorMenor, diferenca: maiorNumero - menorNumero}
+
+    return resultado
 }
 
 // EXERCÍCIO 10
 function segundoMaiorEMenor(array) {
-
+  novaArray = []
+  for (item of array) {
+    let contador = 0
+    for(itemComparado of array){
+      if (item > itemComparado){
+        contador = contador + 1
+      }
+    }
+    novaArray[contador] = item
+  }
+  return [ array[array.length - 2], array[1]]
 }
 
 // EXERCÍCIO 11
 function ordenaArray(array) {
-
+  novaArray = []
+  for (item of array) {
+    let contador = 0
+    for(itemComparado of array){
+      if (item > itemComparado){
+        contador = contador + 1
+      }
+    }
+    novaArray[contador] = item
+  }
+  return novaArray
 }
 
 // EXERCÍCIO 12
