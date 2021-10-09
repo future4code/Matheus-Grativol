@@ -119,7 +119,7 @@ function comparaDoisNumeros(num1, num2) {
 
 // EXERCÍCIO 10
 function segundoMaiorEMenor(array) {
-  novaArray = []
+  let novaArray = []
   for (item of array) {
     let contador = 0
     for(itemComparado of array){
@@ -129,7 +129,7 @@ function segundoMaiorEMenor(array) {
     }
     novaArray[contador] = item
   }
-  return [ array[array.length - 2], array[1]]
+  return [novaArray[novaArray.length - 2], novaArray[1]]
 }
 
 // EXERCÍCIO 11
@@ -149,32 +149,61 @@ function ordenaArray(array) {
 
 // EXERCÍCIO 12
 function filmeFavorito() {
-
+  let filmeFavorito = {
+    nome: "O Diabo Veste Prada",
+    ano: 2006,
+    diretor: "David Frankel",
+    atores: ["Meryl Streep", "Anne Hathaway", "Emily Blunt", "Stanley Tucci"]
+  }
+  return filmeFavorito
 }
 
 // EXERCÍCIO 13
 function imprimeChamada() {
   // "Venha assistir ao filme NOME_DO_FILME, de ANO, dirigido por DIRECAO e estrelado por ELENCO."
+  let filmeFavorito = {
+    nome: "O Diabo Veste Prada",
+    ano: 2006,
+    diretor: "David Frankel",
+    atores: ["Meryl Streep", "Anne Hathaway", "Emily Blunt", "Stanley Tucci"]
+  }
+  return `Venha assistir ao filme ${filmeFavorito.nome}, de ${filmeFavorito.ano}, dirigido por ${filmeFavorito.diretor} e estrelado por ${filmeFavorito.atores[0]}, ${filmeFavorito.atores[1]}, ${filmeFavorito.atores[2]}, ${filmeFavorito.atores[3]}.`
 }
 
 // EXERCÍCIO 14
 function criaRetangulo(lado1, lado2) {
-
+  let retangulo = {
+    largura: lado1,
+    altura: lado2,
+    perimetro: 2 * (lado1 + lado2),
+    area: lado1 * lado2
+  }
+  return retangulo
 }
 
 // EXERCÍCIO 15
 function anonimizaPessoa(pessoa) {
-
+  let infoPessoa = {
+    ...pessoa,
+    nome: "ANÔNIMO"
+  }
+  return infoPessoa
 }
 
 // EXERCÍCIO 16A
 function maioresDe18(arrayDePessoas) {
-
+  let pessoasMaiorIdade = arrayDePessoas.filter((item) => {
+    return item.idade >= 18
+  })
+  return pessoasMaiorIdade
 }
 
 // EXERCÍCIO 16B
 function menoresDe18(arrayDePessoas) {
-
+  let menorDeIdade = arrayDePessoas.filter((item) => {
+    return item.idade < 18
+  })
+  return menorDeIdade
 }
 
 // EXERCÍCIO 17A
