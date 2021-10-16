@@ -1,0 +1,35 @@
+.cabecalho a{
+    text-align: center;
+    margin: 10px;
+    color: brown;
+    font-weight: bold;
+}
+/* .cabecalho{
+    background-color:red;
+} */
+h1 {
+    background-color:black;
+    color: white;
+    text-align: center;
+}
+.topo-site{
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+.p-rede-sociais{
+    text-align: center;
+}
+.rede-sociais img{
+    width: 25px;
+    height: 25px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+footer{
+    background-color: rgb(91, 91, 207);
+    padding: 10px;
+    margin-top: 20px;
+}
