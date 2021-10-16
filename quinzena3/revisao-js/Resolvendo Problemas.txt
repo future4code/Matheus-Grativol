@@ -1,0 +1,35 @@
+1 Ter atenção no enunciado
+
+ler o enunciado com atenção e separar as informções mas relevantes e tentar entender oq como vai funcionar
+
+2 Retirar informações relevantes
+
+retirar palavraas cheves
+palavras chaves viram nomes de variaveis 
+verbos criarão funções
+condições viram condiçoes
+
+
+3 Pensar entradas e saidas
+
+como e quais serão os dados recebidos?
+qual/quais devem ser as possiveis respostas(formato) codigo?
+criar uma função com as entradas e saidas pensadas
+
+4 Fazer um esquema visual
+
+crie exemplos de situações antes
+monte diagramas com a logica do codigo (escrever um passo a passo para tentar visualizar o caminho
+pense nos possiveis cenários e coloque imputs e outputs
+
+5 Criar código feito
+
+
+
+6 Testar força-bruta
+
+
+
+7 Refatorar
+
+revisar o codigo e melhorar se posivel
