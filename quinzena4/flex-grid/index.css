@@ -1,0 +1,79 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.div-pai{
+    display: grid;
+    /* height: 100vh; */
+    grid-template-rows: 50px 1fr 50px;
+}
+
+header{
+    background-color: mediumvioletred;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 20px;
+}
+.login{
+    justify-self: end;
+}
+header img{
+    width: 20px;
+    padding: 0 20px;
+}
+
+header button{
+    padding: 2px;
+}
+
+main{
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+}
+
+nav{
+    background-color: #f2d0e0;
+    display: grid;
+    grid-template-rows: 40px 40px 40px 40px 1fr;
+    align-items: center;
+    padding: 10px;
+}
+
+nav img{
+    width: 16px;
+    padding: 0 5PX;
+}
+span{
+    padding: 0 20px;
+}
+nav div{
+    display: grid;
+    grid-template-columns: 20px 1fr 20px;
+}
+
+.cardapio{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 15px;
+    column-gap: 10px;
+    padding: 15px;
+}
+
+.cardapio div{
+    text-align: center;
+    box-shadow: 10px 5px 5px darkgray;
+}
+
+.cardapio div img{
+    width: 290px;
+}
+
+footer{
+    background-color: mediumvioletred;
+    text-align: center;
+    display: grid;
+    align-items: center;
+}
