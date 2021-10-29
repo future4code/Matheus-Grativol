@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color:#9e9e9e;
+}
+
+header a{
+    text-decoration:none;
+    color: black;
+    font-style: oblique;
+}
+
+header div img{
+    width: 30px;
+}
+
+.div-pai{
+    background-color: black;
+}
+
+main h1{
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+main video{
+    width: 76%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+        
+}
+footer{
+    padding: 10px;
+    background-color: #9e9e9e;
+    text-align: center;
+}
