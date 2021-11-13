@@ -1,9 +1,12 @@
 import React from 'react';
 import './App.css';
+import styled from 'styled-components';
 import CardGrande from './components/CardGrande/CardGrande';
 import ImagemButton from './components/ImagemButton/ImagemButton';
 import CardPequeno from './components/CardPequeno/CardPequeno';
-import foto01 from './';
+import foto01 from './components/img/enviar-correio.png';
+import foto02 from './components/img/marcador-de-localizacao.png';
+
 
 function App() {
   return (
@@ -26,7 +29,7 @@ function App() {
 
         <div>
           <CardPequeno
-            imagem="https://www.flaticon.com/br/autores/secret-studio"
+            imagem= {foto01}
             texto="Email:"
             info="matheus_grati@hotmail.com"
           />
@@ -35,7 +38,7 @@ function App() {
 
         <div>
           <CardPequeno
-            imagem=""
+            imagem= {foto02}
             texto="Endereço:"
             info="Rua Alfredo Lopes de carvalho, 23"
         />
