@@ -10,40 +10,46 @@ const MainContainer = styled.div`
 `
 
 class App extends React.Component {
+  state = {
+    postagem: [
+      {
+        nome: "Paulinha",
+        foto: 'https://picsum.photos/400/400?a=2',
+        imagem: 'https://picsum.photos/400/400?a=1'
+      },
+      {
+        nome: "Daniela",
+        foto: 'https://picsum.photos/400/400?a=3',
+        imagem: 'https://picsum.photos/400/400?a=4'
+      },
+      {
+        nome: "Matheus",
+        foto: 'https://picsum.photos/400/400?a=5',
+        imagem: 'https://picsum.photos/400/400?a=6'
+      }
+    ]
+  }
   render() {
+
+    const postFeed = this.state.postagem.map((posts) => {
+      return(
+        <Post
+          {posts.nome}
+          {posts.foto}
+          {posts.imagem}
+        />
+      )
+    })
     return (
       <div>
-        <MainContainer>
+        {/* <MainContainer>
           <Post
             nomeUsuario={'Paulinha'}
             fotoUsuario={'https://picsum.photos/400/400?a=2'}
             fotoPost={'https://picsum.photos/400/400?a=1'}
           />
-        </MainContainer>
-
-        <MainContainer>
-          <Post
-            nomeUsuario={'Matheus'}
-            fotoUsuario={'https://picsum.photos/400/400?a=3'}
-            fotoPost={'https://picsum.photos/400/400?a=4'}
-          />
-        </MainContainer>  
-
-        <MainContainer>
-          <Post
-            nomeUsuario={'Daniela'}
-            fotoUsuario={'https://picsum.photos/400/400?a=5'}
-            fotoPost={'https://picsum.photos/400/400?a=6'}
-          />
-        </MainContainer>
-
-        <MainContainer>
-          <Post
-            nomeUsuario={'Salomão'}
-            fotoUsuario={'https://picsum.photos/50/50'}
-            fotoPost={'https://picsum.photos/200/150'}
-          />
-        </MainContainer>
+        </MainContainer> */}
+        <MainContainer>{postFeed}</MainContainer>
       </div>
       
     );
