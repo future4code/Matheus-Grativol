@@ -67,12 +67,25 @@ class App extends React.Component {
     }
   }
 
-  selectTarefa = (id) => {
+  // apagarTarefa = (Id) => {
+  //   const novaListaDeTarefas = this.state.tarefas.filter((tarefa) => {
+  //     return Id !== tarefa.id
+  //   })
 
+  //   this.setState({tarefas: novaListaDeTarefas})
+  // }
+
+  selectTarefa = (Id) => {
+    const tarefaCompleta = this.state.tarefas.map((tarefa) => {
+      if (tarefa.id === Id) {
+        return {...tarefa, completa: !tarefa.completa}
+      }
+      return tarefa
+    })
+    this.setState({tarefas: tarefaCompleta})
   }
-
   onChangeFilter = (event) => {
-
+    this.setState({filtro: event.target.value})
   }
 
   render() {
@@ -112,6 +125,7 @@ class App extends React.Component {
                 onClick={() => this.selectTarefa(tarefa.id)}
               >
                 {tarefa.texto}
+                {/* <button onClick={() => this.apagarTarefa(tarefa.index)}>Apagar</button> */}
               </Tarefa>
             )
           })}
