@@ -14,14 +14,15 @@ export default class App extends react.Component {
     }
 
     apagarUsuario = () =>{
+        const id = this.listaUsuario.id
+        const URL = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`
+        const headers = {
+            headers:{
+                Authorization: "matheus-grativol-joy"
+            }
+        }
         axios
-            .delete("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/:id",
-                {
-                    headers: {
-                        Authorization: "matheus-grativol-joy"
-                    }
-                }
-            )
+            .delete(URL, headers)
             .then((res)=>{
                 this.setState({listaUsuario: res.data})
                 this.pegarLista()
@@ -49,15 +50,33 @@ export default class App extends react.Component {
             })
     }
 
+    buscaUsuario = ()=>{
+        const nome = this.state.inputBusca
+        const URL = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?${nome}=&email=`
+        const headers = {
+            headers:{
+                Authorization: "matheus-grativol-joy"
+            }
+        }
+        axios
+            .get(URL, headers)
+            .then((res)=>{
+                this.setState({listaUsuario: res.data})
+            })
+            .catch((err)=>{
+                alert(err.response.data)
+            })
+    }
+
     mudaBusca = (event) => {
-        this.setState({inputBusca: event.terget.value})
+        this.setState({inputBusca: event.target.value})
     }
 
     render() {
 
         const lista = this.state.listaUsuario.map((usuario) =>{
-            return <p key={usuario.id}>{usuario.name}</p>, 
-            <button onClick={this.apagarUsuario}>X</button>
+            return <p key={usuario.id}>{usuario.name} <button onClick={this.apagarUsuario}>X</button></p>  
+            
         })
 
         return (
@@ -73,7 +92,7 @@ export default class App extends react.Component {
                         onChange={this.mudaBusca}
                         placeholder='Nome para busca'
                     />
-                    <button>Buscar</button>
+                    <button onClick={this.buscaUsuario}>Buscar</button>
                 </div>
             </div>
         );
