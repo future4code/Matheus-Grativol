@@ -2,6 +2,14 @@ import react from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+const DivNomes = styled.div`
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    display: flex;
+    justify-content: space-between
+`
 export default class App extends react.Component {
 
     state = {
@@ -13,8 +21,7 @@ export default class App extends react.Component {
         this.pegarLista()
     }
 
-    apagarUsuario = () =>{
-        const id = this.listaUsuario.id
+    apagarUsuario = (id) =>{
         const URL = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`
         const headers = {
             headers:{
@@ -24,7 +31,7 @@ export default class App extends react.Component {
         axios
             .delete(URL, headers)
             .then((res)=>{
-                this.setState({listaUsuario: res.data})
+                alert("Usuário(a) deletado(a) com sucesso!")
                 this.pegarLista()
             })
             .catch((err)=>{
@@ -33,9 +40,9 @@ export default class App extends react.Component {
     }
 
     pegarLista = () => {
+        const URL = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users"
         axios
-            .get("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
-                {
+            .get(URL,{
                     headers: {
                         Authorization: "matheus-grativol-joy"
                     }
@@ -50,8 +57,7 @@ export default class App extends react.Component {
             })
     }
 
-    buscaUsuario = ()=>{
-        const nome = this.state.inputBusca
+    buscaUsuario = (nome)=>{
         const URL = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?${nome}=&email=`
         const headers = {
             headers:{
@@ -75,24 +81,24 @@ export default class App extends react.Component {
     render() {
 
         const lista = this.state.listaUsuario.map((usuario) =>{
-            return <p key={usuario.id}>{usuario.name} <button onClick={this.apagarUsuario}>X</button></p>  
-            
+            return <DivNomes key={usuario.id}>{usuario.name} <button onClick={() => this.apagarUsuario(usuario.id)}>X</button></DivNomes>           
         })
 
         return (
             <div>
                 <div>
                     {lista}
+                    {/* <button onClick={this.props.irParaCriarUsuario}>Ir para cadastro</button> */}
                 </div>
                 <div>
-                    <span>Procurar usuário</span>
+                    <span>Buscar usuário </span>
                     <input
                         type="text"
                         value={this.state.inputBusca}
                         onChange={this.mudaBusca}
                         placeholder='Nome para busca'
                     />
-                    <button onClick={this.buscaUsuario}>Buscar</button>
+                    <button>Buscar</button>
                 </div>
             </div>
         );

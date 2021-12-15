@@ -2,6 +2,10 @@ import react from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+const InputCadrastro = styled.input`
+  margin-top: 10px
+`
+
 export default class App extends react.Component {
   state = {
     inputNome: "",
@@ -34,7 +38,8 @@ export default class App extends react.Component {
     axios
       .post(URL, body, headers)
       .then((res) => {
-        alert("Sucesso, usuário criado");
+        alert("Usuário criado com sucesso!");
+        this.setState({inputNome:"", inputEmail:""})
       })
       .catch((err) => {
         alert(err.response.data);
@@ -43,18 +48,24 @@ export default class App extends react.Component {
   render() {
     return (
       <div>
-        <input
-          value={this.state.inputNome}
-          onChange={this.addNome}
-          placeholder="Nome"
-        />
-        <input
-          value={this.state.inputEmail}
-          onChange={this.addEmail}
-          placeholder="E-mail"
-        />
-        <button onClick={this.criaUsuario}>Criar Usuário</button>
+        <div>
+          {/* <button onClick={this.props.irParaUsuario}>Ir para lista de usuário</button> */}
+        </div>
+        <div>
+          <InputCadrastro
+            value={this.state.inputNome}
+            onChange={this.addNome}
+            placeholder="Nome"
+          />
+          <InputCadrastro
+            value={this.state.inputEmail}
+            onChange={this.addEmail}
+            placeholder="E-mail"
+          />
+          <button onClick={this.criaUsuario}>Criar Usuário</button>
+        </div>
       </div>
+      
     );
   }
 }
