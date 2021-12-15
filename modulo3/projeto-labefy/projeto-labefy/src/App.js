@@ -10,11 +10,17 @@ export default class App extends react.Component{
 
         <div>
 
+          <div>
+            <input>pesquisa</input>
+            <p>Usuario</p>
+          </div>
+
+          <div>
+            <p>Playlists</p>
+          </div>
+
         </div>
-  
-        <div>
-  
-        </div>
+        
       </div>
     );
   }
