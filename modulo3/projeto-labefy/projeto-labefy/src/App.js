@@ -3,13 +3,52 @@ import styled from "styled-components";
 import axios from "axios";
 import TelaAddMusica from "./components/TelaAddMusica";
 import TelaPlayLists from "./components/TelaPlayLists";
-// import fotoHome from "./img/home.png"
-
+import Home from "./img/home.png";
+import Usuario from "./img/usuario.png";
 
 const ContainerPai = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 300px 1fr 200px;
+  grid-template-columns: 300px 1fr 250px;
+`
+
+const ContainerInicio = styled.div`
+  padding: 10px;
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: #000000b3;
+  height: 100vh;
+`
+
+const IconiHome = styled.img`
+  width: 30px;
+  padding: 20px;
+`
+const IconiUsuario = styled.img`
+  width: 30px;
+  padding: 20px;
+`
+const H2 = styled.h2`
+  color: white;
+`
+
+const HomeDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const ContainerBusca = styled.div`
+  margin-bottom: 20px;
+`
+const ContainerUsuario = styled.div`
+  text-align: center;
+  background: #000000b3;
+`
+const ContainerIconiUsuario = styled.div`
+  display: flex;
+  align-items: center;
 `
 export default class App extends react.Component{
 
@@ -18,6 +57,10 @@ export default class App extends react.Component{
     inputPlayList: ""
   }
 
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   handlePlaylist = (e) => {
     this.setState({inputPlayList: e.target.value})
   }
@@ -56,7 +99,6 @@ export default class App extends react.Component{
     .then((res) =>{
       alert("Playlist criada com sucesso!")
       this.setState({inputPlayList: ""})
-
     })
     .catch((err)=> {
       alert(err.response.data.message)
@@ -66,30 +108,42 @@ export default class App extends react.Component{
   render (){
     return (
       <ContainerPai>
-        <div>
-          <div>
-            {/* {fotoHome} */}
-            <h2>Inicio</h2>
-            <input/>
-            <button>Busca playlist</button>
-          </div>
+        <ContainerInicio>
+          <ContainerBusca>
+            <HomeDiv>
+              <IconiHome src={Home}/>
+              <H2>Inicio</H2>
+            </HomeDiv>
+            <div>
+              <input
+                placeholder= "Nome da Playlist"
+              />
+              <button>Busca playlist</button>
+            </div>
+            
+          </ContainerBusca>
           <div>
             <input
               value={this.state.inputPlayList}
               onChange={this.handlePlaylist}
-              placeholder= "Playlist"
+              placeholder= "Nome da Playlist"
             />
             <button onClick={this.addPlayList}>Add Playlists</button>
           </div>   
-        </div>
+        </ContainerInicio>
 
         <div>
           {this.escolheTela()}
         </div>
 
-        <div>
-          <h2>Usuário</h2>
-        </div>
+        <ContainerUsuario>
+          <H2>Usuário</H2>
+          <ContainerIconiUsuario>
+            <IconiUsuario src= {Usuario} />
+            <p>Matheus Grativol</p>
+          </ContainerIconiUsuario>
+          
+        </ContainerUsuario>
         
       </ContainerPai>
     );

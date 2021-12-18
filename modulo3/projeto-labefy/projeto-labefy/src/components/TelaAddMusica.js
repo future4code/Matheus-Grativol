@@ -1,5 +1,7 @@
 import axios from "axios";
 import react from "react";
+import styled from "styled-components";
+
 
 export default class TelaAddMusica extends react.Component{
 
@@ -10,9 +12,9 @@ export default class TelaAddMusica extends react.Component{
         musics: []
     }
 
-    componentDidMount () {
-        this.pegarMusicas()
-    }
+    // componentDidMount () {
+    //     this.pegarMusicas()
+    // }
 
     handleName = (e) =>{
         this.setState({name: e.target.value})
@@ -24,24 +26,24 @@ export default class TelaAddMusica extends react.Component{
         this.setState({url: e.target.value})
     }
 
-    pegarMusicas = (id) =>{
-        const URL = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
+    pegarMusicas = (idPlaylist) =>{
+        const URL = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.idPlaylist}/tracks`
         const headers = {
             headers: {
                 Authorization: "matheus-grativol-joy"
             }
         }
         axios.get(URL, headers)
-        .then(()=>{
-
+        .then((res)=>{
+            this.setState({music: res.data.result.tracks})
         })
-        .catch(()=>{
-
+        .catch((err)=>{
+            alert(err.response.data)
         })
     }
     
-    addMusica = (id) =>{
-        const URL = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
+    addMusica = (idPlaylist) =>{
+        const URL = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.idPlaylist}/tracks`
         const body = {
             name: this.state.name,
             artist: this.state.artist,
@@ -62,15 +64,28 @@ export default class TelaAddMusica extends react.Component{
         })
     }
 
-    deletarMusica = (id) =>{
-
+    deletarMusica = (idPlaylist, id) =>{
+        const URL = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.idPlaylist}/tracks/${id}`
+        const headers = {
+            headers: {
+                Authorization: "matheus-grativol-joy"
+            }
+        }
+        axios.delete(URL,headers)
+        .then((res)=>{
+            alert("Música deletada com sucasso")
+            this.pegarMusicas()
+        })
+        .catch((err)=>{
+            alert(err.response.data)
+        })
     }
 
     render(){
         const musicas = this.state.musics.map ((music)=>{
             return <div key={music.id}>
                 {music.name}{music.artist}{music.url}
-                <button onClick={() => this.deletarMusica(music.id)}>x</button>
+                <button onClick={() => this.deletarMusica(this.props.idPlaylist ,music.id)}>x</button>
             </div>
         })
         return(
@@ -95,7 +110,9 @@ export default class TelaAddMusica extends react.Component{
                     onChange={this.handleUrl}
                     placeholder="URL de música"
                     />
-                    <button>Adicionar música</button>
+                    <button onClick={this.addMusica}>Adicionar música</button>
+                </div>
+                <div>
                     <button onClick={this.props.irParaPlaylists}>Playlists</button>
                 </div>
             </div>
