@@ -3,7 +3,9 @@ import axios from 'axios';
 import styled from 'styled-components';
 import MatchCard from './components/MatchCard/MatchCard';
 import TelaMatchs from './components/TelaMatchs/TelaMatchs';
-import BackImg from './img/BackImg.jpg'
+import BackImg from './img/Back4.jpg'
+import tela1 from './img/search.png'
+import tela2 from './img/match.png'
 
 const ContainerPai = styled.div`
   display: flex;
@@ -28,7 +30,14 @@ const ContainerMatch = styled.div`
   height: 90vh;
   background-image:url(${BackImg});
 `
-function App(props) {
+const Icones =  styled.img`
+  width: 2rem;
+  /* border-radius: 50%; */
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+`
+function App() {
 
   const [perfil, setperfil] = useState({})
   const [tela, setTela] = useState(false)
@@ -64,7 +73,7 @@ function App(props) {
         <div>
           {tela ? (
             <ContainerMenu>
-              <button onClick={trocaTela}> - </button>
+              <Icones src= {tela1} onClick={trocaTela}/>
               <p>Astro Match</p>
               <p></p>
             </ContainerMenu>   
@@ -72,7 +81,7 @@ function App(props) {
             <ContainerMenu>
               <p></p>
               <p>Hello Word</p>
-              <button onClick={trocaTela}> + </button>
+              <Icones src= {tela2} onClick={trocaTela}/>
             </ContainerMenu>   
           )}
         </div>

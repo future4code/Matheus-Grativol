@@ -1,6 +1,7 @@
 import react, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import ClearIcone from '../../img/trash.png'
 
 const ContainerCards = styled.div`
   display: flex;
@@ -14,8 +15,15 @@ const ContainerCards = styled.div`
 const ImgCard = styled.img`
   width: 3rem;
   margin: 0.2rem;
-  border-radius: 100%;
+  border-radius: 10px;
 `
+const Icones =  styled.img`
+  width: 2rem;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+`
+
 const TextCard = styled.p`
   margin-left: 1rem;
 `
@@ -23,11 +31,13 @@ const ContainerMatches = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  font-family: cursive;
+  font-size: 1rem;
 `
 const ContainerPai = styled.div`
 
 `
-export default function TelaMatchs() {
+export default function TelaMatchs(props) {
     const [matches, setMatches] = useState([])
 
     const getMatches = () => {
@@ -46,7 +56,7 @@ export default function TelaMatchs() {
         console.log(matches)
         axios.put("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/MatheusGrativol/clear")
             .then(() => {
-                alert("Matches Clear")
+                alert("Matches Clean")
                 getMatches()
             })
             .catch((err) => {
@@ -56,7 +66,7 @@ export default function TelaMatchs() {
 
     useEffect(() => {
         getMatches()
-    }, [])
+    }, [props.perfil])
 
     const renderedMatches = matches.map((match) => {
         return (
@@ -67,14 +77,14 @@ export default function TelaMatchs() {
         )
     })
 
-    // console.log(matches)
+    console.log(matches)
 
     return (
         <ContainerPai>
             <div>
                 <ContainerMatches>
-                    <p>Blablabla 🧛 </p>
-                    <button onClick={clearMatches}>Clear</button>
+                    <p>❤ Matches List ❤ </p>
+                    <Icones src= {ClearIcone} onClick={clearMatches}/>
                 </ContainerMatches>
                 {renderedMatches}
             </div>
