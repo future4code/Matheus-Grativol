@@ -1,16 +1,26 @@
 import axios from "axios";
 import styled from "styled-components";
 import {useState, useEffect} from 'react'
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-export default function PagePublic(props) {
+export default function PagePublic() {
 
+  const history = useHistory()
+
+  const goApplicationForm = () =>{
+    history.push("/ApplicationForm")
+  }
+
+  const goBack = () =>{
+    history.goBack()
+  }
   return (
     <div>
       <div>LabeX</div>
       <div>
-          <p>Page Public</p>
-          <button onClick={props.telaPrincipal}>Voltar</button>
-          <button onClick={props.telaPrivada}>Inscrever-se</button>
+          <p>ListTripsPage</p>
+          <button onClick={goBack}>Voltar</button>
+          <button onClick={goApplicationForm}>Inscrever-se</button>
       </div>
     </div>
   );

@@ -1,40 +1,44 @@
 import axios from "axios";
 import styled from "styled-components";
+import { Switch, Route, BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 import {useState, useEffect} from 'react'
 import LoginPage from "./Pages/LoginPage";
 import ListTripsPage from "./Pages/ListTripsPage";
-import HomePage from "./Pages/HomePage"
+import HomePage from "./Pages/HomePage";
+import AdminHomePage from "./Pages/AdminHomePage";
+import ApplicationFormPage from "./Pages/ApplicationFormPage";
+import CreateTripPage from "./Pages/CreateTripPage";
+import TripDetailsPage from "./Pages/TripDetailsPage";
+
+
 function App() {
-  const [tela , setTela] = useState ("telaPrincipal")
-
-  const renderTela = ()=>{
-    if (tela === "telaPrivada") {
-      return <LoginPage telaPrincipal = {irParaPricipal}/>
-    }else if (tela === "telaPublica") {
-      return <ListTripsPage telaPrincipal = {irParaPricipal} telaPrivada = {irParaPrivada}/>
-    }else if (tela === "telaPrincipal"){
-      return <HomePage telaPublica = {irParaPublica} telaPrivada = {irParaPrivada}/>
-    }
-  }
-
-  const irParaPrivada = () =>{
-    return setTela ("telaPrivada")
-  }
-  const irParaPublica = () =>{
-    return setTela ("telaPublica")
-  }
-  const irParaPricipal = () =>{
-    return setTela ("telaPrincipal")
-  }
-
-  useEffect(() =>{
-    renderTela()
-  }, [tela])
 
   return (
-    <div>
-      {renderTela()}
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={"/"}>
+          <HomePage/>
+        </Route>
+        <Route exact path={"/ListTrips"}>
+          <ListTripsPage/>
+        </Route>
+        <Route exact path={"/Login"}>
+          <LoginPage/>
+        </Route>
+        <Route exact path={"/ApplicationForm"}>
+          <ApplicationFormPage/>
+        </Route>
+        <Route exact path={"/TripDetails"}>
+          <TripDetailsPage/>
+        </Route>
+        <Route exact path={"/AdminHome"}>
+          <AdminHomePage/>
+        </Route>
+        <Route exact path={"/CreateTrip"}>
+          <CreateTripPage/>
+        </Route>
+      </Switch>
+    </BrowserRouter>    
   );
 }
 
