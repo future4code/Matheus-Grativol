@@ -1,9 +1,36 @@
 import axios from "axios";
 import styled from "styled-components";
 import {useState, useEffect} from 'react'
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-// import PagePrivate from "./Pages/PagePrivate/PagePrivate";
-// import PagePublic from "./Pages/PagePublic/PagePublic";
+import { useHistory } from "react-router-dom";
+
+
+const ContainerPai = styled.div`
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+`
+const TitlePage = styled.h1`
+  color: #32a4ffb8;
+`
+const ButtonStyled = styled.button`
+    background-color: #32a4ffb8; /* Green */
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 10px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    &:hover{
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+`
 
 export default function PageP() {
 
@@ -15,17 +42,21 @@ export default function PageP() {
   const goToLoginPage = () =>{
     history.push("Login")
   }
+
+  const goToAdminHome = () =>{
+    history.push("/AdminHome")
+  }
   return (
-    <div>
+    <ContainerPai>
       <div>
-        <p>LabeX</p>
+        <TitlePage>LabeX</TitlePage>
       </div>
       <div>
-        <p>HomePage</p>
-        <button onClick={goToListTripsPage}> Ver Viagens </button>
-        <button onClick={goToLoginPage}> Área de Admin </button>
+        <ButtonStyled onClick={goToListTripsPage}> Ver Viagens </ButtonStyled>
+        <ButtonStyled onClick={goToAdminHome}> Área de Admin </ButtonStyled>
+        <ButtonStyled onClick={goToLoginPage}> Login </ButtonStyled>
       </div>
-    </div>
+    </ContainerPai>
   );
 }
 
