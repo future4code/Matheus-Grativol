@@ -66,7 +66,7 @@ export default function TelaMatchs(props) {
 
     useEffect(() => {
         getMatches()
-    }, [props.perfil])
+    }, [])
 
     const renderedMatches = matches.map((match) => {
         return (

@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import nLike from '../../img/cancelar.png'
 import yLike from '../../img/life.png'
+import { nativeTouchData } from 'react-dom/cjs/react-dom-test-utils.production.min';
 
 const PhotoPerfl = styled.img`
   width: 55vh;
@@ -38,36 +39,16 @@ const Icones =  styled.img`
 `
 export default function MatchCard(props) {
 
-  useEffect(() => {
-    props.pegarPerfil()
-  }, [])
-
-  const yMatch = () => {
+  const match = (choose) => {
     const url = `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/MatheusGrativol/choose-person`
     const body = {
       "id": props.perfil.id,
-      "choice": true
+      "choice": choose
     }
     axios
       .post(url, body)
       .then(() => {
         alert("Match s2")
-        props.pegarPerfil()
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
-  const nMatch = () => {
-    const url = `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/MatheusGrativol/choose-person`
-    const body = {
-      "id": props.perfil.id,
-      "choice": false
-    }
-    axios
-      .post(url, body)
-      .then(() => {
-        alert("Match :( ")
         props.pegarPerfil()
       })
       .catch((err) => {
@@ -86,8 +67,8 @@ export default function MatchCard(props) {
       </div>
       <ContainerButton>
         {/* <button onClick={nMatch}><Icones src={nLike}/></button> */}
-        <Icones src= {nLike} onClick={nMatch}/>
-        <Icones src= {yLike} onClick={yMatch}/>
+        <Icones src= {nLike} onClick={()=> match(false)}/>
+        <Icones src= {yLike} onClick={()=> match(true)}/>
       </ContainerButton>
     </div>
   )

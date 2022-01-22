@@ -42,6 +42,10 @@ function App() {
   const [perfil, setperfil] = useState({})
   const [tela, setTela] = useState(false)
 
+  useEffect(() => {
+    pegarPerfil()
+  }, [])
+
   const pegarPerfil = () => {
     axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/MatheusGrativol/person")
     .then((res)=>{
@@ -63,9 +67,6 @@ function App() {
   const trocaTela = () =>{
     setTela (!tela)
   }
-
-  // console.log(perfil)
-
 
   return (
     <ContainerPai>
