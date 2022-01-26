@@ -8,8 +8,8 @@ const ContainerPai = styled.div`
   justify-content: center;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh; */
+  /* width: 100vw; */
   /* background-color: whitesmoke; */
   background-image: url(${background});
 `

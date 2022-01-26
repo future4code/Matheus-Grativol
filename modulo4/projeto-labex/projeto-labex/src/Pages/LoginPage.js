@@ -2,6 +2,8 @@ import axios from "axios";
 import styled from "styled-components";
 import { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
+import { Base_URL } from "../utils/constants";
+import { setToken } from "../utils/localStorage";
 
 const FormCreate = styled.form`
   display: flex;
@@ -9,13 +11,6 @@ const FormCreate = styled.form`
   justify-content: space-between;
 `
 const InputForm = styled.input`
-  margin-bottom: 0.7rem;
-  width: 25rem;
-  height: 2rem;
-  border-radius: 10px;
-  border: 1px black solid;
-`
-const SelectForm = styled.select`
   margin-bottom: 0.7rem;
   width: 25rem;
   height: 2rem;
@@ -52,10 +47,34 @@ const ButtonStyled = styled.button`
 
 export default function PagePrivate() {
 
+  const [email , setEmail] = useState("")
+  const [password , setPassword] = useState("")
   const history = useHistory()
 
   const goToBack = () => {
     history.goBack()
+  }
+
+  const onChangerEmail = (e) =>{
+    setEmail(e.target.value)
+  }
+
+  const onChangerPassword = ({target}) =>{
+    setPassword(target.value)
+  }
+
+  const onSubmitLogin = () =>{
+    axios.post(`${Base_URL}/login`, {
+      email,
+      password
+    }).then(({data})=>{
+      console.log(data)
+      setToken(data.token)
+      history.push("/AdminHome")
+    })
+    .catch((res)=>{
+      alert(res)
+    })
   }
 
   return (
@@ -65,14 +84,24 @@ export default function PagePrivate() {
       </div>
       <div>
         <FormCreate>
-          <InputForm type={"text"} />
-          <InputForm type={"text"} />
+          <InputForm 
+          placeholder="E-mail"
+          type={"text"} 
+          value={email}
+          onChange={onChangerEmail}
+          />
+          <InputForm 
+          placeholder="Senha"
+          type={"password"}
+          onChange={onChangerPassword}
+          value={password} 
+          />
         </FormCreate>
 
       </div>
       <ContainerButton>
         <ButtonStyled onClick={goToBack}>Voltar</ButtonStyled>
-        <ButtonStyled>Entrar</ButtonStyled>
+        <ButtonStyled onClick={onSubmitLogin}>Entrar</ButtonStyled>
       </ContainerButton>
     </div>
   );

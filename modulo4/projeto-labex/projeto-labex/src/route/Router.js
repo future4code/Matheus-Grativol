@@ -24,7 +24,7 @@ export const Router = () =>{
                 <Route exact path={"/ApplicationForm"}>
                     <ApplicationFormPage/>
                 </Route>
-                <Route exact path={"/TripDetails"}>
+                <Route exact path={"/TripDetails/:id"}>
                     <TripDetailsPage/>
                 </Route>
                 <Route exact path={"/AdminHome"}>

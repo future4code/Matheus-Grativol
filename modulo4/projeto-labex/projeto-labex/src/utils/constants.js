@@ -1,0 +1,1 @@
+export const Base_URL = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/matheus-grativol-joy"
