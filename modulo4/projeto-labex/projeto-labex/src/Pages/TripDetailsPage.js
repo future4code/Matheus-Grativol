@@ -25,6 +25,12 @@ const ButtonStyled = styled.button`
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     }
 `
+const ContainerButton = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+`
 const Title = styled.h2`
   text-align: center;
   margin-bottom: 2rem;
@@ -35,7 +41,23 @@ const ContainerPend = styled.div`
     text-align: center;
     width: 20rem;
     padding: 1px 8px 8px 8px;
-    /* margin-left: 50%; */
+    margin-bottom: 10px;
+`
+const ContainerPendReturn = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+const ContainerPendReturnApro = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #f5f5f5e6; 
+    border-radius: 10px;
+    /* text-align: center; */
+    /* width: 20rem; */
+    padding: 1px 8px 8px 8px;
     margin-bottom: 10px;
 `
 
@@ -43,6 +65,7 @@ export default function TripDetailsPage() {
 
     const [detailsTrip , setDetailsTrip] = useState({})
     const [candidatesTrip , setCandidatesTrip] = useState([])
+    const [aprovados , setAprovados] = useState([])
     const history = useHistory()
     const params = useParams()
 
@@ -55,17 +78,34 @@ export default function TripDetailsPage() {
         .then(({data})=>{
             setDetailsTrip(data.trip)
             setCandidatesTrip(data.trip.candidates)
+            setAprovados(data.trip.approved)
         })
         .catch((err)=>{
             alert(err)
         })
     }, [])
 
+    const putApproved = (candidateId, approved) =>{
+        const body = {
+            "approve": approved
+        }
+        axios.put(`${Base_URL}/trips/${params.id}/candidates/${candidateId}/decide`, body,{
+            headers: {
+                auth: getToken()
+            }
+        })
+        .then(() =>{
+            alert("Candidato aprovado!")
+        })
+        .catch((err)=>{
+            alert(err)
+        })
+    }
+
     const goToBack = ()=>{
         history.goBack()
     }
 
-    console.log(candidatesTrip)
     const candidates = candidatesTrip.map((cand)=>{
         return(
             <ContainerPend key={cand.id} >
@@ -77,37 +117,46 @@ export default function TripDetailsPage() {
                     <p>Texto de Candidatura: {cand.applicationText}</p>
                 </div>
                 <div>
-                    <ButtonStyled>Aprovar</ButtonStyled>
-                    <ButtonStyled>Reprovar</ButtonStyled>
+                    <ButtonStyled onClick={()=> putApproved(cand.id, true)}>Aprovar</ButtonStyled>
+                    <ButtonStyled onClick={()=> putApproved(cand.id, false)}>Reprovar</ButtonStyled>
                 </div>
             </ContainerPend>
         )
+    })
+    const candAprovados = aprovados.map((candt)=>{
+        return(
+            <li key={candt.id}>{candt.name}</li>
+        )        
     })
     return(
         <div>
             <div>
                 <Title>Viagem da minha vida</Title>
             </div>
-            <div>
+            <ContainerPendReturnApro>
                 <p>Nome: {detailsTrip.name}</p>
                 <p>Descrição: {detailsTrip.description}</p>
                 <p>Planeta: {detailsTrip.planet}</p>
                 <p>Duração: {detailsTrip.durationInDays}</p>
                 <p>Data: {detailsTrip.date}</p>
-            </div>
-            <div>
+            </ContainerPendReturnApro>
+            <ContainerButton>
                 <ButtonStyled onClick={goToBack}>Voltar</ButtonStyled>
-            </div>
-            <div>
+            </ContainerButton>
+            <ContainerPendReturn>
                 <h3>Candidatos Pendentes</h3>
                 {candidates}
-            </div>
-            <div>
-                <h3>Candidatos Aprovados</h3>
-                <ul>
-
-                </ul>
-            </div>
+            </ContainerPendReturn>
+            <ContainerPendReturn>
+                <div>
+                    <h3>Candidatos Aprovados</h3>
+                </div>
+                <ContainerPendReturn>
+                    <ul>
+                        {candAprovados}
+                    </ul>
+                </ContainerPendReturn>    
+            </ContainerPendReturn>
         </div>
     )
 }

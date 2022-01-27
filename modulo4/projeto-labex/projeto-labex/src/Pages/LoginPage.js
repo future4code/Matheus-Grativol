@@ -15,7 +15,7 @@ const InputForm = styled.input`
   width: 25rem;
   height: 2rem;
   border-radius: 10px;
-  border: 1px black solid;
+  border: none;
 `
 const Title = styled.h2`
   text-align: center;
