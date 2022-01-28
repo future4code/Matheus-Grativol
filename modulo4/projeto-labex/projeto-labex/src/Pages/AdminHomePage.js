@@ -4,7 +4,8 @@ import {useState, useEffect} from 'react'
 import { useHistory } from "react-router-dom";
 import { Base_URL } from "../utils/constants";
 import Rmv from "../img/Rmv.png"
-import { useParams } from "react-router-dom";
+import { getToken } from "../utils/localStorage";
+import { useProtectedPage } from "../Hooks/useProtectedPage";
 
 const ButtonStyled = styled.button`
     background-color: #32a4ffb8; /* Green */
@@ -59,9 +60,11 @@ const Title = styled.h2`
 
 export default function AdminHomePage() {
 
+    useProtectedPage()
+
     const [trips , setTrips] = useState([])
 
-    useEffect(()=>{
+    const getTrips = ()=>{
         axios.get(`${Base_URL}/trips`)
         .then(({ data })=>{
             setTrips(data.trips)
@@ -69,7 +72,28 @@ export default function AdminHomePage() {
         .catch((err)=>{
             alert(err)
         })
+    }
+
+    // useProtectedPage()
+
+    useEffect(()=>{
+        getTrips()
     },[])
+
+    const deleteTrip = (id)=>{
+        axios.delete(`${Base_URL}/trips/${id}`, {
+            headers:{
+                auth: getToken()
+            }
+        }).then(()=>{
+            // confirm()
+            alert("Viagem deletada")
+            getTrips()
+        })
+        .catch((err)=>{
+            alert(err)
+        })
+    }
 
     console.log(trips)
     const history = useHistory()
@@ -86,11 +110,21 @@ export default function AdminHomePage() {
         history.push("/CreateTrip")
     }
 
+    const goToLogin = () =>{
+        history.push("/Login")
+    }
+
+    const rmvToken = () =>{
+        localStorage.removeItem("token")
+        goToLogin()
+    }
+    
+
     const tripsList = trips.map((trip)=> {
         return(
             <ContainerTrip key= {trip.id} onClick={()=>goToTripDetails(trip.id)}>
                 <p> {trip.name} </p>
-                <IconeRmv src= {Rmv} />
+                <IconeRmv src= {Rmv} onClick={() => deleteTrip(trip.id)} />
             </ContainerTrip>   
         )
     })
@@ -103,7 +137,7 @@ export default function AdminHomePage() {
             <div>
                 <ButtonStyled onClick={goToBack}>Voltar</ButtonStyled>
                 <ButtonStyled onClick={goToCreateTrip}>Criar Viagem</ButtonStyled>
-                <ButtonStyled>Logout</ButtonStyled>
+                <ButtonStyled onClick={rmvToken}>Logout</ButtonStyled>
             </div>
             <div>
                 {tripsList}

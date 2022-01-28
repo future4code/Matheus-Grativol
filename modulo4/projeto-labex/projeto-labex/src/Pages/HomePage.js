@@ -54,7 +54,6 @@ export default function PageP() {
       <div>
         <ButtonStyled onClick={goToListTripsPage}> Ver Viagens </ButtonStyled>
         <ButtonStyled onClick={goToAdminHome}> Área de Admin </ButtonStyled>
-        <ButtonStyled onClick={goToLoginPage}> Login </ButtonStyled>
       </div>
     </ContainerPai>
   );

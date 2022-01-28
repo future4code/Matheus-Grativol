@@ -4,11 +4,14 @@ import { Router } from "./route/Router";
 import background from "./img/background.jpg"
 
 const ContainerPai = styled.div`
+  display: grid;
+  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  align-items: stretch;
+  /* flex-grow: 1; */
+  /* height: 100vh; */
+  /* margin-top: 25%; */
   /* width: 100vw; */
   /* background-color: whitesmoke; */
   background-image: url(${background});
@@ -18,7 +21,11 @@ function App() {
 
   return (
     <ContainerPai>
-      <Router/>
+      {/* <div></div> */}
+      <div>
+        <Router/>
+      </div>
+      {/* <div></div> */}
     </ContainerPai>
   );
 }

@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Base_URL } from "../utils/constants";
 import { getToken } from "../utils/localStorage";
-
+import { useProtectedPage } from "../Hooks/useProtectedPage";
 
 const ButtonStyled = styled.button`
     background-color: #32a4ffb8; /* Green */
@@ -63,6 +63,8 @@ const ContainerPendReturnApro = styled.div`
 
 export default function TripDetailsPage() {
 
+    useProtectedPage()
+
     const [detailsTrip , setDetailsTrip] = useState({})
     const [candidatesTrip , setCandidatesTrip] = useState([])
     const [aprovados , setAprovados] = useState([])
@@ -83,7 +85,7 @@ export default function TripDetailsPage() {
         .catch((err)=>{
             alert(err)
         })
-    }, [])
+    }, [aprovados])
 
     const putApproved = (candidateId, approved) =>{
         const body = {
@@ -96,6 +98,7 @@ export default function TripDetailsPage() {
         })
         .then(() =>{
             alert("Candidato aprovado!")
+
         })
         .catch((err)=>{
             alert(err)

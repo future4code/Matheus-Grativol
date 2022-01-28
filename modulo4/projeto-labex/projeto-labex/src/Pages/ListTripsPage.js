@@ -25,7 +25,7 @@ const ButtonStyled = styled.button`
 const ContainerTrip = styled.div`
   background-color: #f5f5f5e6; 
   border-radius: 10px;
-  text-align: center;
+  /* text-align: center; */
   width: 30rem;
   padding: 1px 8px 8px 8px;
   /* margin-left: 50%; */
@@ -70,11 +70,11 @@ export default function PagePublic() {
   const tripsList = trips.map((trip)=> {
     return(
         <ContainerTrip key= {trip.id}>
-            <p>Nome: {trip.name} </p>
-            <p>Descrição: {trip.description}</p>
-            <p>Planeta: {trip.planet}</p>
-            <p>Duração: {trip.durationInDays}</p>
-            <p>Data: {trip.date}</p>
+            <p><b>Nome: </b> {trip.name} </p>
+            <p><b>Descrição: </b> {trip.description}</p>
+            <p><b>Planeta: </b> {trip.planet}</p>
+            <p><b>Duração: </b> {trip.durationInDays}</p>
+            <p><b>Data: </b> {trip.date}</p>
         </ContainerTrip>   
     )
   })

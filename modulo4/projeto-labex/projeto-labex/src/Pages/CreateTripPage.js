@@ -2,6 +2,7 @@ import axios from "axios"
 import styled from "styled-components"
 import { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
+import { useProtectedPage } from "../Hooks/useProtectedPage";
 
 const FormCreate = styled.form`
     display: flex;
@@ -51,6 +52,8 @@ const ButtonStyled = styled.button`
     }
 `
 export default function CreateTripPage() {
+
+    useProtectedPage()
 
     const history = useHistory()
 
