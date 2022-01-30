@@ -86,15 +86,17 @@ export default function PagePrivate() {
         <FormCreate>
           <InputForm 
           placeholder="E-mail"
-          type={"text"} 
+          type={"email"} 
           value={email}
           onChange={onChangerEmail}
+          required
           />
           <InputForm 
           placeholder="Senha"
           type={"password"}
           onChange={onChangerPassword}
           value={password} 
+          required
           />
         </FormCreate>
 
