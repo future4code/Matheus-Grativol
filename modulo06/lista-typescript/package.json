@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && node ./build/index.js",
     "start01": "tsc && node ./build/exercicio01.js",
-    "start02": "tsc && node ./build/exercicio02.js"
+    "start02": "tsc && node ./build/exercicio02.js",
+    "start03": "tsc && node ./build/exercicio03.js",
+    "start04": "tsc && node ./build/exercicio04.js",
+    "start05": "tsc && node ./build/exercicio05.js",
+    "start06": "tsc && node ./build/exercicio06.js"
   },
   "keywords": [],
   "author": "",
