@@ -4,6 +4,7 @@ import { v4 as generateId } from 'uuid';
 
 import { AddressInfo } from "net";
 
+
 const app = express();
 
 app.use(express.json());
@@ -29,15 +30,21 @@ const tarefas: typeTarefa[] = [
         completed: true
     },
     {
-        userId: "01",
-        id: "01",
+        userId: "03",
+        id: "03",
         title: "estudar",
         completed: false
     },
     {
-        userId: "01",
-        id: "01",
+        userId: "04",
+        id: "04",
         title: "dormir",
+        completed: false
+    },
+    {
+        userId: "04",
+        id: "05",
+        title: "acordar",
         completed: false
     }
 ]
@@ -66,13 +73,58 @@ app.post("/tarefas/add", (request: Request, response: Response) => {
         completed: false
     }
 
-    console.log(newTarefa)
     tarefas.push(newTarefa)
 
     response.status(201).send(tarefas)
 })
 
+app.put("/tarefas/editar", (request: Request, response: Response)=>{
+    const tarefaCompleta = request.body.completed
+    if(!tarefaCompleta){
+        response.status(400).send("Favor informar o completed")
+        return
+    }
+    const idTarefa = request.headers.authorization
+    if(!idTarefa){
+        response.status(400).send("Favor informar o id da tarefa")
+        return
+    }
 
+    const tarefa = tarefas.find((taref)=> taref.id === idTarefa)
+    // if(!tarefa){
+    //     response.status(400).send("Favor informar o id da tarefa")
+    // }
+
+    // tarefa.completed = tarefaCompleta
+
+    response.status(201).send(tarefa)
+})
+
+app.delete("/tarefas/delet",(request: Request, response: Response)=>{
+    const idTarefa = request.headers.authorization
+    if(!idTarefa){
+        response.status(400).send("Favor informar o id da tarefa")
+        return
+    }
+
+    const tarefaDel = tarefas.filter((tarefa)=> tarefa.id !== idTarefa)
+
+    response.status(201).send(tarefaDel)
+})
+
+app.get("/tarefas/:userId",(request: Request, response: Response)=>{
+
+    const idUser = request.params.userId
+
+    if(!idUser){
+        response.status(400).send("Favor informar o id do usuario")
+        return
+    }
+
+    const tarefasUser = tarefas.filter((taf) => taf.userId === idUser)
+
+    response.status(201).send(tarefasUser)
+})
 
 
 
