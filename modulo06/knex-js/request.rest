@@ -1,0 +1,49 @@
+// Para requisições com body:
+// Content-Type: application/json 
+// Pule 1 linha
+// {}
+
+// Para requisições com headers: 
+// Authorization: "token"
+
+
+###  // endpoint buscar atores
+GET http://localhost:3003/actor
+
+###  // endpoint buscar atores por name
+GET http://localhost:3003/actor/name/Tony Ramos
+
+###  // endpoint buscar atores por id
+GET http://localhost:3003/actor/002
+
+###  // endpoint buscar atores por name
+GET http://localhost:3003/actor/gender/female
+
+
+###  // endpoint editar ator
+PUT http://localhost:3003/actor/edit/004
+Content-Type: application/json 
+
+{
+ "salary": 500000
+}
+
+###  // endpoint deletar ator
+DELETE http://localhost:3003/actor/delete/003
+
+###  // endpoint buscar 
+GET http://localhost:3003/actor/salary/media/female
+
+###  // endpoint buscar 
+GET http://localhost:3003/actor/gender/?gender=female
+
+###  // endpoint criar ator
+POST http://localhost:3003/actor/add
+Content-Type: application/json 
+
+{
+ "name": "rodrigo",
+ "salary": 50,
+ "birthDate": "1989-05-20",
+ "gender": "male"   
+}
