@@ -1,2 +1,20 @@
+// Para requisições com body:
+// Content-Type: application/json 
+// Pule 1 linha
+// {}
+
+// Para requisições com headers: 
+// Authorization: "token"
+
 ###
-GET http://localhost:3003/actor
+GET http://localhost:3003/users
+
+###
+POST http://localhost:3003/user
+Content-Type: application/json 
+
+{
+ "name": "rodrigo",
+ "nickName": "Ro",
+ "email": "rodrigo@ro.com.br"
+}

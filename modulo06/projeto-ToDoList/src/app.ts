@@ -2,16 +2,17 @@ import express, {Request , response, Response} from "express";
 import cors from "cors";
 import connection from "./connection";
 import { AddressInfo } from "net";
+import { v4 as generateId } from 'uuid';
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.get("/actor", async (req: Request, res: Response): Promise<void> => {
+app.get("/users", async (req: Request, res: Response): Promise<void> => {
   try {
     
-    const result = await connection("Actor").select();
+    const result = await connection("User").select();
 
     res.status(200).send(result);
   }catch(error:any){
@@ -20,17 +21,21 @@ app.get("/actor", async (req: Request, res: Response): Promise<void> => {
 });
 
 
-app.post("/actor", async (req: Request, res: Response): Promise<void> => {
+app.post("/user", async (req: Request, res: Response): Promise<void> => {
   try {
-    const id = Date.now().toString();
+    // const id = Date.now().toString();
+    // const id = generateId()
 
-    await connection("Actor").insert({
-      id,
+    await connection("User").insert({
+      id: generateId(),
       name: req.body.name,
-      salary: req.body.salary,
-      birth_date: req.body.birthDate,
-      gender: req.body.gender,
-    });
+      nickName: req.body.nickName,
+      email: req.body.email,
+    })
+
+    // if(! || !nickName || !email){
+    //   throw new Error()
+    // }
 
     res.status(201).send({ message: "Ator criado" });
   } catch (error: any) {
