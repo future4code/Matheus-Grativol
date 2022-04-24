@@ -1,0 +1,8 @@
+USE `419859-matheus-souza`;
+
+CREATE TABLE User(
+	id VARCHAR(255) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    nickName VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);

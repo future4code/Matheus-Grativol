@@ -7,14 +7,40 @@
 // Authorization: "token"
 
 ###
-GET http://localhost:3003/users
+GET http://localhost:3003/user/all
 
 ###
 POST http://localhost:3003/user
 Content-Type: application/json 
 
 {
- "name": "rodrigo",
- "nickName": "Ro",
- "email": "rodrigo@ro.com.br"
+ "name": "Astro Dev",
+ "nickName": "astrodev",
+ "email": "astro@dev.com"
 }
+
+###
+GET http://localhost:3003/user/4b147e41-b7be-4426-84a9-70fbba67bf32
+
+###
+PUT  http://localhost:3003/user/edit/4b147e41-b7be-4426-84a9-70fbba67bf32
+Content-Type: application/json
+
+{
+    "name": "Rodrigo",
+    "nickName": "Rô"
+}
+
+###
+POST http://localhost:3003/task
+Content-Type: application/json
+
+{
+    "title": "Criar banco dos alunos",
+	"description": "Devemos criar o banco dos alunos para o módulo do backend",
+	"limitDate": "2020/05/04",
+	"creatorUserId": "4b147e41-b7be-4426-84a9-70fbba67bf32"
+}
+
+###
+GET http://localhost:3003/task/a1805846-d2f3-439d-83e1-13659cd0bceb
