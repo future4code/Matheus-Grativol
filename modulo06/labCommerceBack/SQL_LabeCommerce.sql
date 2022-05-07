@@ -21,3 +21,5 @@ CREATE TABLE labecommerce_purchases(
     quantidade INT,
     total_price FLOAT
 );
+
+SELECT * from labecommerce_users

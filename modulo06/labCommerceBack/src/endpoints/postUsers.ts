@@ -12,16 +12,15 @@ export async function postUsers(req: Request, res: Response): Promise<void> {
         if (!name) {
             throw new Error("Informe o Nome")
         }
-        if (!email || email.includs("@")) {
+        if (!email) {
             throw new Error("Verifique o E-mail")
         }
         if (password < 6) {
             throw new Error("Senha menor que 6")
         }
-        const [checkEmail] = await connection("suaTabela")
+        const [checkEmail] = await connection("labecommerce_users")
             .select("email")
             .where({ "email": email })
-        console.log(checkEmail);
 
         if (checkEmail) {
             throw new Error("Este email já existe...")
