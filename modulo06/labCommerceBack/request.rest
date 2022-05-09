@@ -20,9 +20,9 @@ POST http://localhost:3003/products
 Content-Type: application/json 
 
 {
- "name": "Bananinha",
- "price": 9.8,
- "image_url": "https://th.bing.com/th/id/OIP.3xXE8Bi7WY86F0MuMHFD8QHaJV?pid=ImgDet&rs=1"
+ "name": "Blue Moon",
+ "price": 8.9,
+ "image_url": "https://th.bing.com/th/id/R.1f8ecd739049f21819c6ece522c122c2?rik=loZhdoQJvGNq%2bg&pid=ImgRaw&r=0"
 }
 
 ###
@@ -33,10 +33,10 @@ POST http://localhost:3003/purchases
 Content-Type: application/json 
 
 {
- "user_id": "",
- "product_id": "",
- "quantidade": 
+ "user_id": "001",
+ "product_id": "17b96103-b456-4438-8fa9-61d47d0bde0d",
+ "quantidade": 3
 }
 
 ###
-GET http://localhost:3003/users/:user_id/purchases
+GET http://localhost:3003/users/001/purchases

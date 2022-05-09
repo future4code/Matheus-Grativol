@@ -22,4 +22,23 @@ CREATE TABLE labecommerce_purchases(
     total_price FLOAT
 );
 
-SELECT * from labecommerce_users
+SELECT * from labecommerce_users;
+
+INSERT INTO labecommerce_users(id, name, email, password)
+VALUES(
+	"001",
+    "Rodri",
+    "rodri@hotmail.com",
+    "rodri123"
+);
+
+SELECT * FROM labecommerce_products;
+
+INSERT INTO labecommerce_purchases(id, user_id, product_id, quantidade, total_price)
+VALUES(
+	"002",
+    "001",
+    "17b96103-b456-4438-8fa9-61d47d0bde0d",
+    3,
+    27
+)
