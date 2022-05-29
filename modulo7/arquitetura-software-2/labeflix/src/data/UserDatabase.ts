@@ -13,4 +13,8 @@ export class UserDatabase extends BaseDatabase {
       })
       .into(UserDatabase.TABLE_NAME);
   }
+
+  async getUser(){
+    return await UserDatabase.connection.select().into(UserDatabase.TABLE_NAME)
+  }
 }

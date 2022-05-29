@@ -15,4 +15,15 @@ export class UserController {
       res.status(400).send(error.message);
     }
   }
+
+  async getUser(req: Request, res: Response):Promise<void>{
+    try{  
+      const userBusiness = new UserBusiness()
+      const Users = await userBusiness.getUser()
+
+      res.status(200).send(Users)
+    }catch(error:any){
+      res.status(400).send(error.message)
+    }
+  }
 }

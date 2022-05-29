@@ -18,4 +18,9 @@ export class UserBusiness {
     })
   }
 
+  async getUser(): Promise<any> {
+    const userDatabase = new UserDatabase
+    
+    return await userDatabase.getUser()
+  }
 }
