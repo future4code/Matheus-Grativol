@@ -1,0 +1,25 @@
+POST http://localhost:3003/user/create
+Content-Type: application/json
+
+{
+    "name": "teste3",
+    "email": "email3@email.com",
+    "password": "23432535"
+}
+
+###
+GET http://localhost:3003/user/getUser
+
+###
+POST http://localhost:3003/movie/create
+Content-Type: application/json
+
+{
+    "title": "O PODEROSO CHEFÃO",
+    "description": "O Poderoso Chefão é um trabalho de grande escala, foi considerado o melhor filme de todos os tempos por toda sua obra, e não apenas por um filme.",
+    "duration_in_minutes": 175,
+    "year_of_release": 1972
+}
+
+###
+GET http://localhost:3003/movie/getMovie
