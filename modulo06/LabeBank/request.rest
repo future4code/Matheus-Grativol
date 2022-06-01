@@ -1,0 +1,19 @@
+// Para requisições com body:
+// Content-Type: application/json
+
+// Para requisições com headers: 
+// Authorization: "token"
+
+###
+GET http://localhost:3003/users
+
+###
+POST http://localhost:3003/cadastro/user
+Content-Type: application/json
+
+{
+    "name": "Daniela Grativol",
+    "cpf": 16001687306,
+    "dataNasc": "05/07/1995"
+}
+
