@@ -21,4 +21,15 @@ implements UserRepository{
             throw new Error(error.message)
         }
     }
+
+    public getUser = async () =>{
+        try{
+            const users: user = await UserDatabese.connection.select("id", "name", "email")
+            .into("labook_users")
+
+            return users
+        }catch(error:any){
+            throw new Error(error.message)
+        }
+    }
 }

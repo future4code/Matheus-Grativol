@@ -1,20 +1,27 @@
+
 POST http://localhost:3003/user/create 
 Content-Type: application/json 
 
 {
     "name": "Pedrinho",
-    "nickname": "Pedrinho",
     "email": "Pedrinho@email.com",
     "password": "1223145153"
 }
 
 ###
-POST http://localhost:3003/task/create 
+GET http://localhost:3003/user/get
+
+###
+POST http://localhost:3003/post/create 
 Content-Type: application/json 
 
 {
-    "title": "aula arquitetura II",
-    "description": "como usar o express.router()",
-    "deadline": "26/05/2022",
-    "authorId": "1b146f8d-7709-4a84-8c3c-7f980e8d4da3" 
+    "photo": "https://th.bing.com/th/id/OIP.2s6v8hFMcJDkWqc-Un3M8QHaFj?pid=ImgDet&rs=1",
+    "description": "Paisagem pega na net!",
+    "type": "normal",
+    "created_at": "2022-05-16",
+    "author_id": "b1cbc1d2-a520-40d7-bade-9b740bfc9005"
 }
+
+###
+GET http://localhost:3003/post/get

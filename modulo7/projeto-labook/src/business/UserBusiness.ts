@@ -1,3 +1,4 @@
+import { UserDatabese } from "../data/mySQL/UserDatabase";
 import { CustomError } from "../error/customError";
 import { user, UserInputDTO } from "../model/user";
 import { generateId } from "../services/generateId";
@@ -27,5 +28,11 @@ export class UserBusiness{
         }catch(error:any){
             throw new Error(error.message);
         }
+    }
+
+    public getUser = async () =>{
+        const userDatabase = new UserDatabese
+
+        return await userDatabase.getUser()
     }
 }
