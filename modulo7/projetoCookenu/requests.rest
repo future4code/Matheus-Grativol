@@ -3,13 +3,14 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-   "name": "Norman Osbourne", 
-   "nickname": "Green Goblin", 
-   "email": "osbourne1111@oscorp.com" ,
-   "password": "ihatepeter"
+   "name": "Matheus", 
+   "nickname": "Math", 
+   "email": "matheus@labenu.com" ,
+   "password": "123abcd",
+   "role": "ADMIN"
 }
-###
 
+###
 POST http://localhost:3003/user/login
 Content-Type: application/json
 

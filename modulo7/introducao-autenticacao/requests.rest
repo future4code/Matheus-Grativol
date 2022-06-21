@@ -1,0 +1,23 @@
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "name": "Bananinha Labenu", 
+   "nickname": "Bananinha", 
+   "email": "bananinha@labenu.com" ,
+   "password": "labenu123"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "bananinha@labenu.com" ,
+   "password": "labenu123"
+}
+
+###
+GET  http://localhost:3003/user/profile
+Authorization: 
