@@ -4,9 +4,11 @@ import { user, UserInputDTO } from "../model/user";
 import { generateToken } from "../services/authenticator";
 import { generateHash } from "../services/hashManager";
 import { generateId } from "../services/IdGenerator";
+import { UserRepository } from "./UserRepository";
 
-const userDatabase = new UserDatabase()
 export class UserBusiness {
+    constructor(private userDatabase: UserRepository){}
+
     public createUser = async (input: UserInputDTO): Promise<string> =>{
 
         try{
@@ -35,7 +37,7 @@ export class UserBusiness {
                 role
             }
 
-            await userDatabase.insertUser(user)
+            await this.userDatabase.insertUser(user)
             const token = generateToken({id, role})
 
             return token

@@ -6,3 +6,5 @@ CREATE TABLE Auth_users (
     password VARCHAR(64) NOT NULL,
     role VARCHAR(64) NOT NULL
 );
+
+SELECT * FROM Auth_users;

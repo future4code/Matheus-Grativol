@@ -3,11 +3,11 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-   "name": "Matheus", 
-   "nickname": "Math", 
-   "email": "matheus@labenu.com" ,
+   "name": "Daniela", 
+   "nickname": "Dani", 
+   "email": "daniela@labenu.com" ,
    "password": "123abcd",
-   "role": "ADMIN"
+   "role": "NORMAL"
 }
 
 ###
@@ -15,8 +15,8 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-   "email": "osbourne1111@oscorp.com",
-   "password": "ihatepeter"
+   "email": "",
+   "password": ""
 }
 
 ###
@@ -25,6 +25,6 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYmQ2OTg5LTM1ZjYtNDZhMC05ZWU1LWNhZGRjNGUxYjRjMCIsImlhdCI6MTY1NDY0NzU4MSwiZXhwIjoxNjU0NjUxMTgxfQ.QjnFbW9cy_PH9CkJO6clhBaFJq6leqtkW0slrhkrcaI
 
 {
-   "name": "Harry Osbourne",
-   "nickname": "Harry" 
+   "name": "",
+   "nickname": "" 
 }

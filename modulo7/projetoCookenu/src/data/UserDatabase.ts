@@ -1,9 +1,10 @@
+import { UserRepository } from "../business/UserRepository";
 import { CustomError } from "../error/customError";
 import { user } from "../model/user";
 import { BaseDatabase } from "./BaseDatabase";
 
 
-export class UserDatabase extends BaseDatabase{
+export class UserDatabase extends BaseDatabase implements UserRepository{
 
     private TABLE_NAME = "Auth_users"
 
