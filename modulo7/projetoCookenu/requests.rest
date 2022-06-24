@@ -31,3 +31,13 @@ GET http://localhost:3003/user/2fcb249e-6bab-4d7b-90ef-45dd7e2ddbef
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzMDc4MGQ1LWVjZDYtNGVmMy05Mzk0LWFlZTgyNzQxMmM1NyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1NjA5MDkwOSwiZXhwIjoxNjU2MDk0NTA5fQ.6On56zutLUv6hByM9CagqBIMt-07xwcD9vCU3dCUbRs
 
+
+###
+POST http://localhost:3003/post/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzMDc4MGQ1LWVjZDYtNGVmMy05Mzk0LWFlZTgyNzQxMmM1NyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1NjA5MDkwOSwiZXhwIjoxNjU2MDk0NTA5fQ.6On56zutLUv6hByM9CagqBIMt-07xwcD9vCU3dCUbRs
+
+{
+   "title": "",
+   "description": ""
+}
