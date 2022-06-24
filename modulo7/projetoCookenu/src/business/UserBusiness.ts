@@ -1,8 +1,8 @@
 import { UserDatabase } from "../data/UserDatabase";
-import { CustomError, InvalidPassword } from "../error/customError";
-import { user, UserInputDTO } from "../model/user";
-import { generateToken } from "../services/authenticator";
-import { generateHash } from "../services/hashManager";
+import { CustomError, InvalidPassword, invalidProfile, UnauthorizedUser } from "../error/customError";
+import { AuthenticationData, LoginInputDTO, profileOutput, user, UserInputDTO } from "../model/user";
+import { generateToken, getTokenData } from "../services/authenticator";
+import { compareHash, generateHash } from "../services/hashManager";
 import { generateId } from "../services/IdGenerator";
 import { UserRepository } from "./UserRepository";
 
@@ -43,6 +43,56 @@ export class UserBusiness {
             return token
         }catch(error: any){
             throw new CustomError(400, error.message)
+        }
+    }
+
+    public login = async (input: LoginInputDTO): Promise<string> =>{
+
+        try{
+            let {email, password} = input
+
+            if (!email || !password) {
+                throw new CustomError(400, "Preencha corretamente os campos");
+            }
+
+            const user = await this.userDatabase.findUserByEmail(email)
+
+            const hashComparison = await compareHash(password, user.password)
+
+            if(!hashComparison) {
+                throw new InvalidPassword()
+            }
+
+            const payload: AuthenticationData = {id : user.id, role: user.role}
+
+            const token = generateToken(payload)
+
+            return token
+        } catch(error:any){
+            throw new CustomError(400, error.message)
+        }
+    }
+
+    public getProfile = async(input:profileOutput): Promise<void> =>{
+        try{
+
+            let {id, token} = input
+
+            // const { role } = getTokenData(token);
+
+            // if (role !== "ADMIN") {
+            //     throw new UnauthorizedUser();
+            // }
+
+            const profile = await this.userDatabase.selectProfile(id)
+
+            // if(!profile) {
+            //     throw new invalidProfile()   
+            // }
+
+            return profile
+        }catch(error: any){
+            throw new Error(error.sqlMessage || error.message)
         }
     }
 }

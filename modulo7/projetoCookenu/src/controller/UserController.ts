@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
-import { UserInputDTO } from "../model/user";
+import { LoginInputDTO, profileOutput, UserInputDTO } from "../model/user";
 
 export class UserController {
     constructor(private userBusiness: UserBusiness){}
@@ -20,6 +20,38 @@ export class UserController {
             res.status(201).send({ message: "Usuário criado!", token})
         }catch(error: any){
             res.status(400).send(error.message)
+        }
+    }
+
+    public login = async (req: Request, res: Response) =>{
+        try{
+            const input: LoginInputDTO = {
+                email: req.body.email,
+                password: req.body.password
+            }
+
+            const token = await this.userBusiness.login(input)
+
+            res.status(200).send({message: "Usuário logado!", token})
+        }catch(error:any){
+            res.status(400).send(error.message)
+        }
+    }
+
+    public profile = async (req:Request, res:Response) => {
+        try{
+
+            const input: profileOutput = {
+                id: req.params.id,
+                token: req.headers.authorization!
+            }
+
+            const profile = await this.userBusiness.getProfile(input)
+
+            res.status(201).send(profile)
+
+        }catch(error: any) {
+            res.status(error.statusCode).send(error.message)
         }
     }
 }

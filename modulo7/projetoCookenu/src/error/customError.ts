@@ -28,3 +28,9 @@ export class UnauthorizedUser extends CustomError{
     }
 }
 
+export class invalidProfile extends CustomError{
+    constructor(){
+        super(400, "Perfil não encontrado!")
+    }
+}
+

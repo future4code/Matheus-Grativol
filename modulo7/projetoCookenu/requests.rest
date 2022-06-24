@@ -15,9 +15,17 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-   "email": "",
-   "password": ""
+   "email": "daniela@labenu.com",
+   "password": "123abcd"
 }
+
+
+###
+GET http://localhost:3003/user/login
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJmY2IyNDllLTZiYWItNGQ3Yi05MGVmLTQ1ZGQ3ZTJkZGJlZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTYwMjk2NjcsImV4cCI6MTY1NjAzMzI2N30.BKSZgNLzIYvKpRKa045A3nxtZOtITox419FIXP19lnM
+
+
 
 ###
 PUT http://localhost:3003/user/edit/20bd6989-35f6-46a0-9ee5-caddc4e1b4c0

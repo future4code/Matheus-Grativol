@@ -7,6 +7,11 @@ export type user = {
    role: string
 }
 
+export interface profileOutput{
+   id: string,
+   token: string
+}
+
 export interface UserInputDTO {
    name: string,
    nickname: string,
