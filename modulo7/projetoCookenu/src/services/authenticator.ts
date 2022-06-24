@@ -13,5 +13,11 @@ export const generateToken = ({ id, role }: AuthenticationData): string => {
 
 export const getTokenData = (token: string): AuthenticationData => {
   const tokenData = jwt.verify(token, process.env.JWT_KEY as string) as AuthenticationData
-  return tokenData
+
+  const result : AuthenticationData = {
+    id: tokenData.id,
+    role: tokenData.role
+  }
+
+  return result
 }

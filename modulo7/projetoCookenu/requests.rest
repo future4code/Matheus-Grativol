@@ -15,24 +15,19 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-   "email": "daniela@labenu.com",
+   "email": "matheus@labenu.com",
    "password": "123abcd"
 }
 
 
 ###
-GET http://localhost:3003/user/login
+GET http://localhost:3003/user/profile
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJmY2IyNDllLTZiYWItNGQ3Yi05MGVmLTQ1ZGQ3ZTJkZGJlZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTYwMjk2NjcsImV4cCI6MTY1NjAzMzI2N30.BKSZgNLzIYvKpRKa045A3nxtZOtITox419FIXP19lnM
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzMDc4MGQ1LWVjZDYtNGVmMy05Mzk0LWFlZTgyNzQxMmM1NyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1NjA4OTc5MCwiZXhwIjoxNjU2MDkzMzkwfQ.iy8zRuFAqkkACMNA9m8Eo9p0lCX6WRFCRNp6EUjEW_8
 
 
 ###
-PUT http://localhost:3003/user/edit/20bd6989-35f6-46a0-9ee5-caddc4e1b4c0
+GET http://localhost:3003/user/2fcb249e-6bab-4d7b-90ef-45dd7e2ddbef
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYmQ2OTg5LTM1ZjYtNDZhMC05ZWU1LWNhZGRjNGUxYjRjMCIsImlhdCI6MTY1NDY0NzU4MSwiZXhwIjoxNjU0NjUxMTgxfQ.QjnFbW9cy_PH9CkJO6clhBaFJq6leqtkW0slrhkrcaI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzMDc4MGQ1LWVjZDYtNGVmMy05Mzk0LWFlZTgyNzQxMmM1NyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1NjA5MDkwOSwiZXhwIjoxNjU2MDk0NTA5fQ.6On56zutLUv6hByM9CagqBIMt-07xwcD9vCU3dCUbRs
 
-{
-   "name": "",
-   "nickname": "" 
-}

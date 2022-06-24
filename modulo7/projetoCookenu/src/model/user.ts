@@ -9,6 +9,12 @@ export type user = {
 
 export interface profileOutput{
    id: string,
+   name: string
+   email: string
+}
+
+export interface getProfile{
+   id: string,
    token: string
 }
 

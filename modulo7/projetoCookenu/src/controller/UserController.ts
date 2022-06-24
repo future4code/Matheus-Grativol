@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
-import { LoginInputDTO, profileOutput, UserInputDTO } from "../model/user";
+import { getProfile, LoginInputDTO, profileOutput, UserInputDTO } from "../model/user";
 
 export class UserController {
     constructor(private userBusiness: UserBusiness){}
@@ -41,17 +41,31 @@ export class UserController {
     public profile = async (req:Request, res:Response) => {
         try{
 
-            const input: profileOutput = {
-                id: req.params.id,
-                token: req.headers.authorization!
-            }
+            const token = req.headers.authorization!
 
-            const profile = await this.userBusiness.getProfile(input)
+            const profile = await this.userBusiness.getProfile(token)
 
             res.status(201).send(profile)
 
         }catch(error: any) {
-            res.status(error.statusCode).send(error.message)
+            res.status(400).send(error.message)
+        }
+    }
+
+    public otherProfile = async (req:Request, res:Response) => {
+        try{
+
+            const input : getProfile = {
+                id: req.params.id,
+                token: req.headers.authorization!
+            }
+            
+            const profile = await this.userBusiness.getProfileOther(input)
+
+            res.status(201).send(profile)
+
+        }catch(error: any) {
+            res.status(400).send(error.message)
         }
     }
 }

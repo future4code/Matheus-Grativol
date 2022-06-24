@@ -1,6 +1,6 @@
 import { UserDatabase } from "../data/UserDatabase";
 import { CustomError, InvalidPassword, invalidProfile, UnauthorizedUser } from "../error/customError";
-import { AuthenticationData, LoginInputDTO, profileOutput, user, UserInputDTO } from "../model/user";
+import { AuthenticationData, getProfile, LoginInputDTO, profileOutput, user, UserInputDTO } from "../model/user";
 import { generateToken, getTokenData } from "../services/authenticator";
 import { compareHash, generateHash } from "../services/hashManager";
 import { generateId } from "../services/IdGenerator";
@@ -73,22 +73,44 @@ export class UserBusiness {
         }
     }
 
-    public getProfile = async(input:profileOutput): Promise<void> =>{
+    public getProfile = async(token: string): Promise<profileOutput> =>{
         try{
 
-            let {id, token} = input
 
-            // const { role } = getTokenData(token);
+            const { role, id } = getTokenData(token);
 
-            // if (role !== "ADMIN") {
-            //     throw new UnauthorizedUser();
-            // }
+            if (role !== "ADMIN") {
+                throw new UnauthorizedUser();
+            }
 
-            const profile = await this.userDatabase.selectProfile(id)
+            const profile : profileOutput = await this.userDatabase.selectProfile(id)
 
-            // if(!profile) {
-            //     throw new invalidProfile()   
-            // }
+            if(!profile) {
+                throw new invalidProfile()   
+            }
+
+            return profile
+        }catch(error: any){
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+
+    public getProfileOther = async(input: getProfile): Promise<profileOutput> =>{
+        try{
+
+            const{id, token} = input
+
+            const { role } = getTokenData(token);
+
+            if (role !== "ADMIN") {
+                throw new UnauthorizedUser();
+            }
+
+            const profile : profileOutput = await this.userDatabase.selectProfileOther(id)
+
+            if(!profile) {
+                throw new invalidProfile()   
+            }
 
             return profile
         }catch(error: any){
