@@ -1,0 +1,43 @@
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "name": "Daniela", 
+   "nickname": "Dani", 
+   "email": "daniela@labenu.com" ,
+   "password": "123abcd",
+   "role": "NORMAL"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "matheus@labenu.com",
+   "password": "123abcd"
+}
+
+
+###
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzMDc4MGQ1LWVjZDYtNGVmMy05Mzk0LWFlZTgyNzQxMmM1NyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1NjA4OTc5MCwiZXhwIjoxNjU2MDkzMzkwfQ.iy8zRuFAqkkACMNA9m8Eo9p0lCX6WRFCRNp6EUjEW_8
+
+
+###
+GET http://localhost:3003/user/2fcb249e-6bab-4d7b-90ef-45dd7e2ddbef
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzMDc4MGQ1LWVjZDYtNGVmMy05Mzk0LWFlZTgyNzQxMmM1NyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1NjA5NjIyNCwiZXhwIjoxNjU2MDk5ODI0fQ.J8v_acmqgVjdtNwi4qr9ptJ3Nclykx6u2K_jZwpwnts
+
+
+###
+POST http://localhost:3003/post/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzMDc4MGQ1LWVjZDYtNGVmMy05Mzk0LWFlZTgyNzQxMmM1NyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1NjA5NjIyNCwiZXhwIjoxNjU2MDk5ODI0fQ.J8v_acmqgVjdtNwi4qr9ptJ3Nclykx6u2K_jZwpwnts
+
+{
+   "title": "Primeiro post",
+   "description": "Testando o endpoint Criar post "
+}
